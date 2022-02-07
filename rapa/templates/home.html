@@ -1,0 +1,19 @@
+<!-- home.html 또는 index.html로 이름을 설정하기 -->
+<!-- polls와 voting2를 통합 -->
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+<div>
+  <h2>My First Django Apps</h2>
+  <ul class="apps">
+    {% for appname in app_list %}
+        {% with appname|add:":"|add:"index" as urlvar %}
+        <!-- app 개수만큼 반복: 정의한 규칙(|)에 따라 결과값이 appname에 저장됨 -->
+        <li><a href="{% url urlvar %}">{{ appname }}</a></li>
+        <!-- url과 app name이 찍힘 -->
+        {% endwith %}
+    {% endfor %}
+  </ul>
+</div>
+{% endblock content %}

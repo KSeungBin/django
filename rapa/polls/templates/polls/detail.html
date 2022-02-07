@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %} 
+<!-- 해당 template을 수정하면, 수정 내용이 부모(base.html)에 반영되도록 위 코드를 입력 -->
+  
+  <h1>{{ question.question_text }}</h1>
+
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+  <form action="{% url 'polls:vote' question.id %}" method="post">
+  {% csrf_token %}
+  {% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+  {% endfor %}
+  <input type="submit" value="Vote" />
+  </form>
+{% endblock %}
+<!-- block을 열었으면, 반드시 endblock으로 닫아줘야 한다 -->

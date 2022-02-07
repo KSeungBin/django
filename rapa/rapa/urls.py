@@ -1,0 +1,29 @@
+"""rapa URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+from django.urls.conf import include
+from rapa import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # add project home
+    path('', views.HomeView.as_view(), name='home'), # class 형태로 정의되어 있을 때는 이렇게 url path를 지정해줘야 함
+    
+    # add app
+    path('polls/', include('polls.urls')),
+    path('voting2/', include('voting2.urls')),
+]

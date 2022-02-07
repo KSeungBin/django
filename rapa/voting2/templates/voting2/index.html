@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %} 
+  {% if latest_question_list %}
+    <ul>
+      {% for question in latest_question_list %}
+        <li><a href="/voting2/{{ question.id }}">{{ question.question_text }}</a>
+        </li>
+        <!-- 이미지X, 텍스트O의 경우 .html과 동일한 태그를 사용하면 됨 ex) <p>결과출력</p> -->
+      {% endfor %}
+    </ul>
+  {% else %}
+  <!--latest_question_list에 내용이 없으면 아래 내용을 브라우저에 출력  -->
+    <p>No polls are available.</p>
+  {% endif %}
+{% endblock %}

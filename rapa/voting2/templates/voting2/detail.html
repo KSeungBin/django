@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %} 
+  <!-- {{변수}}값이 h1 tag에 찍힌다 -->
+  <!-- question_text는 class의 속성에 해당-->
+  <h1>{{ question.question_text }}</h1>
+
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+  <form action="{% url 'voting2:vote' question.id %}" method="post">
+    <!-- 지정된 url로 사용자가 입력한 값을 post 방식으로 서버에 보냄  -->
+  {% csrf_token %}
+  <!-- deploy할 때 보안에 취약한 django : 토큰을 통해 CSRF 공격을 방지  -->
+  {% for choice in question.choice_set.all %}
+  <!-- 반드시 시작 for문과 end for문으로 구성돼야 함  -->
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+    <!-- radio button과 label 사용자가 둘 중 어느 것을 눌러도 선택이 되도록 한 것  -->
+  {% endfor %}
+  <input type="submit" value="Vote" />
+  <!-- submit type이라 action이 동작됨. client가 'Vote' 버튼을 누르면 위에 정의된 url로 데이터가 전달됨 -->
+  </form>
+{% endblock %}

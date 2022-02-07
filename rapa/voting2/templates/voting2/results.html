@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %} 
+  <h1>{{ question.question_text }}</h1>
+
+  <ul>
+  {% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    <!-- {{value|pluralize}} : 복수 접미사 필터 -->
+    <!-- value의 값이 1이면 value, 2이상이면 values가 됨 -->
+  {% endfor %}
+  
+  </ul>
+
+  <!-- voting하면 결과가 출력돼야 하므로 redirection -->
+  <a href="{% url 'voting2:detail' question.id %}">Vote again?</a>
+{% endblock %}

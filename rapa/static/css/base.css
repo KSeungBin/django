@@ -1,0 +1,48 @@
+body{
+    margin: 0 auto;
+    background-image: url('../image/slide2.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* 이미지는 static 폴더 안에 넣어줘야 함 + css와 image 폴더가 동일 위상에 있기 때문에 ../ 명령으로 경로가 부모(=static)를 가리키도록 함*/
+    
+div#content{
+    width: 1000px;
+    margin: 0 auto;
+}
+/* 상하 margin=0, 좌우 margin은 auto로 조정해 가운데 정렬 되도록 함 */
+
+div#content h2{
+    margin: 30px;
+}
+
+div#sidev > ul {
+    display: flex;
+}
+
+div#sidev > ul > li{
+    list-style: none;
+    padding: 5px;
+}
+
+div#content ul li {
+    background-color: rgb(201, 130, 59);
+    width: 1000px;
+    margin-bottom: 20px;
+    padding: 10px;
+    list-style: none;
+}
+/* <a>, <str> 등의 inline 요소에는 width 적용 안됨. inline 요소는 텍스트에만 적용되기 때문 : 따라서, div#content ul li a 하면 안 됨 */
+
+div > .apps > li > a{
+    font-size: 30px;
+    color: black;
+}
+
+div > .apps > li > a:link{
+    text-decoration: none;
+}
+
+div > .apps > li > a:hover{
+    color:rgb(16, 97, 100);
+}

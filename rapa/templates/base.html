@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Amazing Site{% endblock %}</title>
+    <!-- 상속 구간 4개 선언: 규칙1. block 이름  규칙2. endblock으로 닫아줘야 한다 -->
+    
+    
+    
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- bootstrap 사이트의 introduction 페이지에 있는 css code의 '복사'버튼을 눌러 붙여넣기 하기 -->
+
+    {% load static %}
+    <link rel="stylesheet" href= "{% static 'css/base.css' %}" />
+    <!-- 바깥에 이중인용부호를 사용하면, 안쪽에 single 인용부호를 사용하는 것이 기본 -->
+    <!-- link: .html과 .css를 연결해줌 | static 방법을 사용할 때에는 반드시 load static 써줘야 하고, {static}이라고 선언해줘야 한다 -->
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <!-- 부트 스트랩 사용할 때는, 스타일 바꾸면 안됨. 나와있는 코드 그대로 사용하기 -->
+        <!-- navbar class의 navbar-dark를 selector로 사용하여 뷰포트에 background-dark(selector에 지정된 style의 속성과 값) css를 적용 -->
+        <div id="sidev">
+            {% block sidebar %}
+            <ul>
+                <li><a href="/">Project_Home</a></li>
+                <li><a href="/admin">Admin</a></li>
+                <li><a href="{% static '/test.html' %}"></a></li>
+            </ul>
+            {% endblock %}
+            <!-- block안에 들어있지 않은 tag는 그대로 자식 파일에 상속된다 -->
+            <!-- 자식 파일에 코드를 추가하면(block 안에 있는 부분), 뷰포트에 수정된 내용이 추가됨 -->
+        </div>
+    </nav>
+    <div id="content">
+        <div class="section">
+            {% block content %}{% endblock %} 
+            <!-- index.html의 값을 그대로 가져온다 : {}{} 사이에 어떤 값도 넣지 않으면 default -->
+        </div>
+    </div>
+    {% block footer%}
+    <footer class="fixed-bottom bg-info">
+        <h4>여기는 footer</h4>
+    </footer>
+    {% endblock footer%}
+</body>
+</html>
